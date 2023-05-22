@@ -7,15 +7,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>管理後台</title>
+    <script src="./js/jquery-3.7.0.min.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 <header>
-    <a href="index.php">首頁</a>
-    <a href="login.php">登出</a>
+    <a href="index.php">網站首頁</a>
+    <a href="backend.php">管理首頁</a>
+    <a href="./api/logout.php">登出</a>
     <nav>
         <a href='./backend.php?do=add_vote'>新增投票</a>     
-        <a href='./backend.php?do=query_vote'>結果查詢</a>
+        <a href='./backend.php?do=query_vote'>會員管理</a>
+        <a href='./backend.php?do=query_vote'>投票明細管理</a>
     </nav>
 </header>
 <main>

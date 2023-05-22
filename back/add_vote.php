@@ -5,14 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>新增主題</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <script src="../js/jquery-3.7.0.min.js"></script>
 </head>
 <body>
 <main>
 
     <h1>新增主題</h1>
-    <form action="../api/add_vote.php" method="post">
+    <form action="./api/add_vote.php" method="post">
         <div>
             <label for="subject">主題說明：</label>
             <input type="text" name="subject" id="subject" class="subject-input">
