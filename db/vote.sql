@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2023-05-15 10:14:29
+-- 產生時間： 2023-05-22 04:53:25
 -- 伺服器版本： 10.4.27-MariaDB
 -- PHP 版本： 8.2.0
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `log`
+-- 資料表結構 `logs`
 --
 
-CREATE TABLE `log` (
+CREATE TABLE `logs` (
   `id` int(10) UNSIGNED NOT NULL,
   `mem_id` int(11) NOT NULL,
   `topic_id` int(11) NOT NULL,
@@ -39,10 +39,10 @@ CREATE TABLE `log` (
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `member`
+-- 資料表結構 `members`
 --
 
-CREATE TABLE `member` (
+CREATE TABLE `members` (
   `id` int(10) UNSIGNED NOT NULL,
   `acc` varchar(32) NOT NULL,
   `pw` varchar(16) NOT NULL,
@@ -66,6 +66,20 @@ CREATE TABLE `options` (
   `updated_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- 傾印資料表的資料 `options`
+--
+
+INSERT INTO `options` (`id`, `description`, `subject_id`, `total`, `created_time`, `updated_time`) VALUES
+(8, '20分鐘', 2, 14, '2023-05-15 08:19:27', '2023-05-22 01:06:26'),
+(18, '2分鐘', 2, 13, '2023-05-19 06:16:31', '2023-05-22 02:29:04'),
+(19, '10000秒', 2, 11, '2023-05-19 06:16:31', '2023-05-22 02:29:04'),
+(20, '123233132131', 2, 15, '2023-05-19 06:18:06', '2023-05-19 08:23:45'),
+(21, '3.5萬', 5, 6, '2023-05-19 06:23:38', '2023-05-19 08:21:18'),
+(22, '4萬', 5, 5, '2023-05-19 06:23:38', '2023-05-22 02:29:56'),
+(23, '4.5萬', 5, 8, '2023-05-19 06:23:38', '2023-05-19 08:21:10'),
+(24, '5萬以上', 5, 38, '2023-05-19 06:23:38', '2023-05-19 08:23:48');
+
 -- --------------------------------------------------------
 
 --
@@ -83,19 +97,27 @@ CREATE TABLE `topics` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- 傾印資料表的資料 `topics`
+--
+
+INSERT INTO `topics` (`id`, `subject`, `open_time`, `close_time`, `type`, `created_time`, `updated_time`) VALUES
+(2, '每天要花在通勤時間多久?', '2023-05-17 16:19:00', '2023-05-22 16:19:00', 2, '2023-05-15 08:19:27', '2023-05-19 06:18:06'),
+(5, '期望薪水多少?', '2023-05-19 14:23:00', '2023-05-22 14:23:00', 1, '2023-05-19 06:23:38', '2023-05-19 06:23:38');
+
+--
 -- 已傾印資料表的索引
 --
 
 --
--- 資料表索引 `log`
+-- 資料表索引 `logs`
 --
-ALTER TABLE `log`
+ALTER TABLE `logs`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `member`
+-- 資料表索引 `members`
 --
-ALTER TABLE `member`
+ALTER TABLE `members`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -115,28 +137,28 @@ ALTER TABLE `topics`
 --
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `log`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `logs`
 --
-ALTER TABLE `log`
+ALTER TABLE `logs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- 使用資料表自動遞增(AUTO_INCREMENT) `member`
+-- 使用資料表自動遞增(AUTO_INCREMENT) `members`
 --
-ALTER TABLE `member`
+ALTER TABLE `members`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `options`
 --
 ALTER TABLE `options`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- 使用資料表自動遞增(AUTO_INCREMENT) `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -13,46 +13,45 @@
 <header>
     <a href="index.php">首頁</a>
     <a href="login.php">登出</a>
+    <nav>
+        <a href='./backend.php?do=add_vote'>新增投票</a>     
+        <a href='./backend.php?do=query_vote'>結果查詢</a>
+    </nav>
 </header>
 <main>
-<nav>
-    <a href='./back/add_vote.php'>新增投票</a>    
-    <a href='./back/edit_vote.php'>編輯投票</a>    
-    <a href='./back/del_vote.php'>刪除投票</a>    
-    <a href='./back/query_vote.php'>結果查詢</a>
-</nav>
-<ul class="topic-list">
-    <li class="list-row">
-        <div class="list-item-title">主題</div>
-        <div class="list-item-title">狀態</div>
-        <div class="list-item-title">期間</div>
-        <div class="list-item-title">投票數</div>
-        <div class="list-item-title">操作</div>
-    </li>
 <?php
-    $sql="select * from `topics`";
-    $rows=$pdo->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-    foreach($rows as $row){
-?>
-    <li class="list-row">
-        <div class="list-item"><?=$row['subject'];?></div>
-        <div class="list-item"></div>
-        <div class="list-item">
-          <?=$row['open_time'] . " ~ " . $row['close_time'];?>
-        </div>
-        <div class="list-item"></div>
-        <div class="list-item">
-            <button onclick="location.href='./back/edit_vote.php?id=<?=$row['id'];?>'">編輯</button>
-            <button onclick="location.href='./back/del_vote.php?id=<?=$row['id'];?>'">刪除</button>
-        </div>
-    </li>
-<?php
-    }
-?>
-</ul>    
-    
+ //include "./back/topic_list.php";
 
+/*  if(isset($_GET['do'])){
+    $file="./back/".$_GET['do'].".php";
+ }else{
+    $file="./back/topic_list.php";
+ } */
 
+//$do=(isset($_GET['do']))?$_GET['do']:'topic_list';
+$do=$_GET['do']??'topic_list';
+
+$file="./back/".$do.".php";
+
+if(file_exists($file)){
+    include $file;
+}else{
+    include "./back/topic_list.php";
+}
+
+//include (file_exists($file))?$file:"./back/topic_list.php";
+ /* 
+ switch($_GET['do']){
+    case "add_vote":
+        include "./back/add_vote.php";
+    break;
+    case 'query_vote':
+        include "./back/query_vote.php";
+    break;
+    default :
+        include "./back/topic_list.php";
+ } */
+ ?>
 </main>
 <footer></footer>
 </body>
