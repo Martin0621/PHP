@@ -1,4 +1,16 @@
-<?php include_once "db.php";?>
+<?php include_once "db.php";
+$do='';
+if(isset($_GET['do'])){
+    $do=$_GET['do'];
+}else{
+    if(isset($_SESSION['pr'])){
+        $do=$_SESSION['pr'];
+    }else{
+        $do="error";
+    }
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,11 +27,27 @@
     <a href="index.php">網站首頁</a>
     <a href="backend.php">管理首頁</a>
     <a href="./api/logout.php">登出</a>
-    <nav>
-        <a href='./backend.php?do=add_vote'>新增投票</a>     
-        <a href='./backend.php?do=query_vote'>會員管理</a>
-        <a href='./backend.php?do=query_vote'>投票明細管理</a>
-    </nav>
+    <?php 
+    switch($_SESSION['pr']){
+        case "super":
+
+        break;
+        case "admin":
+            echo "<nav>";
+            echo "    <a href='./backend.php?do=add_vote'>新增投票</a>";
+            echo "    <a href='./backend.php?do=query_vote'>投票明細管理</a>";
+            echo "</nav>";
+        break;
+        case "member":        
+            echo "<nav>";
+            echo "    <a href='./backend.php?do=edit_self'>修改個人資料</a>";
+            echo "    <a href='./backend.php?do=vote_history'>投票紀錄查詢</a>";
+            echo "</nav>";
+        break;
+    }
+
+    ?>
+
 </header>
 <main>
 <?php
@@ -32,14 +60,14 @@
  } */
 
 //$do=(isset($_GET['do']))?$_GET['do']:'topic_list';
-$do=$_GET['do']??'topic_list';
+
 
 $file="./back/".$do.".php";
 
 if(file_exists($file)){
     include $file;
 }else{
-    include "./back/topic_list.php";
+    include "./back/error.php";
 }
 
 //include (file_exists($file))?$file:"./back/topic_list.php";
